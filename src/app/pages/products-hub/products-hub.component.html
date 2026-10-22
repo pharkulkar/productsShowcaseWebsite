@@ -1,0 +1,148 @@
+<main class="products-hub">
+
+  <!-- HERO -->
+  <section class="products-hub__hero">
+    <div class="products-hub__hero-inner">
+      <div class="products-hub__eyebrow">
+        <span class="products-hub__pulse" aria-hidden="true"></span>
+        <span class="products-hub__eyebrow-text">Developer Utility Suite</span>
+      </div>
+      <h1 class="products-hub__headline">
+        Tools that work<br>
+        <em class="products-hub__headline-em">while you think</em>
+      </h1>
+      <p class="products-hub__tagline">
+        Four precision-built products. Real-time AI, crypto intelligence,
+        data extraction, and restaurant ops — each crafted for the people who hate wasted motion.
+      </p>
+    </div>
+    <div class="products-hub__hero-bg" aria-hidden="true"></div>
+  </section>
+
+  <!-- BENTO GRID -->
+  <section class="products-hub__bento">
+    <div class="products-hub__bento-inner">
+      <div class="bento-grid">
+
+        <!-- CELL 1: Whisper AI -->
+        <article class="bento-cell" data-product="whisper-ai">
+          <div class="bento-cell__inner">
+            <div class="bento-cell__meta">
+              <span class="bento-cell__category">AI Assistant</span>
+              <span class="bento-cell__status">
+                <span class="bento-cell__status-dot" aria-hidden="true"></span>
+                Live
+              </span>
+            </div>
+            <h2 class="bento-cell__name">Whisper AI</h2>
+            <p class="bento-cell__tagline">Your invisible co-pilot for every meeting</p>
+            <p class="bento-cell__desc">Real-time transcription. Context-aware suggestions. Invisible to screen share.</p>
+            <!-- Mini live-feed simulation -->
+            <div class="bento-cell__feed" aria-label="Live processing feed preview" role="img">
+              <div class="bento-cell__feed-line bento-cell__feed-line--active">
+                <span class="feed-tag">TRANSCRIPT</span>
+                <span class="feed-text">...current churn rate question detected</span>
+              </div>
+              <div class="bento-cell__feed-line">
+                <span class="feed-tag feed-tag--suggest">SUGGEST</span>
+                <span class="feed-text">3.2% MoM — down from 5.1% after Q3 redesign</span>
+              </div>
+              <div class="bento-cell__feed-line bento-cell__feed-line--dim">
+                <span class="feed-tag">CONTEXT</span>
+                <span class="feed-text">Overlay hidden from all capture APIs ✓</span>
+              </div>
+            </div>
+            <a [routerLink]="['/products', 'whisper-ai']" class="bento-cell__cta">
+              Explore Whisper AI <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- CELL 2: BTC Lens -->
+        <article class="bento-cell" data-product="btc-lens">
+          <div class="bento-cell__inner">
+            <div class="bento-cell__meta">
+              <span class="bento-cell__category">Chrome Extension</span>
+            </div>
+            <h2 class="bento-cell__name">BTC Lens</h2>
+            <p class="bento-cell__tagline">Live Bitcoin intelligence in your toolbar</p>
+            <p class="bento-cell__desc">Price ticker, mempool fees, and whale alerts — no account needed.</p>
+            <!-- Mini ticker widget -->
+            <div class="bento-cell__ticker" aria-label="BTC price preview">
+              <span class="ticker__label">BTC/USD</span>
+              <span class="ticker__price">$67,412</span>
+              <span class="ticker__delta ticker__delta--up">▲ 2.34%</span>
+            </div>
+            <a [routerLink]="['/products', 'btc-lens']" class="bento-cell__cta">
+              Explore BTC Lens <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- CELL 3: GMB Extractor -->
+        <article class="bento-cell" data-product="gmb-extractor">
+          <div class="bento-cell__inner">
+            <div class="bento-cell__meta">
+              <span class="bento-cell__category">Data Tool</span>
+            </div>
+            <h2 class="bento-cell__name">GMB Extractor</h2>
+            <p class="bento-cell__tagline">Pull structured business data at scale</p>
+            <p class="bento-cell__desc">Extract names, phones, ratings, and addresses from any Google Maps search.</p>
+            <!-- Mini stat row -->
+            <div class="bento-cell__stats" aria-label="Extraction stats preview">
+              <div class="stat-item">
+                <span class="stat-item__value">120</span>
+                <span class="stat-item__label">results</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-item__value">12</span>
+                <span class="stat-item__label">fields</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-item__value">CSV</span>
+                <span class="stat-item__label">export</span>
+              </div>
+            </div>
+            <a [routerLink]="['/products', 'gmb-extractor']" class="bento-cell__cta">
+              Explore GMB Extractor <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- CELL 4: TableFlow -->
+        <article class="bento-cell" data-product="tableflow">
+          <div class="bento-cell__inner">
+            <div class="bento-cell__meta">
+              <span class="bento-cell__category">Restaurant Tech</span>
+            </div>
+            <h2 class="bento-cell__name">TableFlow</h2>
+            <p class="bento-cell__tagline">All-in-one restaurant operations platform</p>
+            <p class="bento-cell__desc">Reservations, digital menus, tableside ordering, and kitchen display — connected.</p>
+            <!-- Mini floor status -->
+            <div class="bento-cell__floor" aria-label="Restaurant floor status preview">
+              <div class="floor-stat">
+                <span class="floor-stat__num">18</span>
+                <span class="floor-stat__lbl">seated</span>
+              </div>
+              <div class="floor-stat">
+                <span class="floor-stat__num">34</span>
+                <span class="floor-stat__lbl">orders</span>
+              </div>
+              <div class="floor-stat">
+                <span class="floor-stat__num">$48</span>
+                <span class="floor-stat__lbl">avg ticket</span>
+              </div>
+            </div>
+            <a [routerLink]="['/products', 'tableflow']" class="bento-cell__cta">
+              Explore TableFlow <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORM AVAILABILITY section removed — platforms are communicated directly on each product card -->
+
+</main>

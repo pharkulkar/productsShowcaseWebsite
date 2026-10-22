@@ -1,0 +1,12 @@
+@if (accepted() === null) {
+  <div class="cookie-banner" role="region" aria-label="Cookie consent">
+    <p class="cookie-banner__text">
+      We use essential cookies to make this site work. No tracking, no ads.
+      <a routerLink="/cookies" class="cookie-banner__learn-more">Learn more</a>
+    </p>
+    <div class="cookie-banner__actions">
+      <button class="cookie-banner__accept" (click)="accept()">Accept</button>
+    </div>
+    <button class="cookie-banner__dismiss" (click)="decline()" aria-label="Dismiss cookie banner">✕</button>
+  </div>
+}

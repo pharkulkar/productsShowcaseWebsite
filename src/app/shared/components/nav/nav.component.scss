@@ -1,0 +1,183 @@
+@use '../../../../styles/design-system' as *;
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(5,7,11,0.85);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  @include transition-spring(box-shadow, 0.4s);
+
+  &--scrolled {
+    box-shadow: 0 1px 0 rgba(255,255,255,0.05), 0 4px 32px rgba(0,0,0,0.4);
+  }
+
+  &__inner {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    gap: var(--space-6);
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
+    text-decoration: none;
+    @include transition-spring(opacity, 0.3s);
+    &:hover { opacity: 0.8; }
+  }
+
+  &__logo-mark {
+    font-size: 1.2rem;
+    line-height: 1;
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  &__logo-wordmark {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-text-primary);
+  }
+
+  &__version {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    padding: 2px 6px;
+    border: 1px solid var(--color-border-strong);
+    border-radius: 4px;
+    margin-left: var(--space-1);
+    letter-spacing: 0.04em;
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-left: auto;
+    @media (max-width: #{$bp-md}) {
+      display: none;
+      position: fixed;
+      top: 64px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: var(--space-6);
+      background: rgba(5,7,11,0.96);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid var(--color-border);
+      &--open { display: flex; }
+    }
+  }
+
+  &__link {
+    position: relative;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    border-radius: var(--radius-sm);
+    @include transition-spring(color, 0.3s);
+    text-decoration: none;
+
+    &:hover { color: var(--color-text-primary); }
+
+    &--active {
+      color: var(--color-text-primary);
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--color-accent);
+      }
+    }
+
+    @media (max-width: #{$bp-md}) {
+      font-size: var(--text-xl);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex-shrink: 0;
+  }
+
+  &__cta {
+    padding: 8px 18px;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-primary);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    @include transition-spring(all, 0.3s);
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.04);
+      transform: translateY(100%);
+      transition: transform 0.3s $ease-spring;
+    }
+
+    &:hover {
+      border-color: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+      &::after { transform: translateY(0); }
+    }
+
+    &:active { transform: scale(0.98); }
+  }
+
+  &__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    padding: 8px;
+    cursor: pointer;
+    @media (max-width: #{$bp-md}) { display: flex; }
+    span {
+      display: block;
+      height: 1.5px;
+      background: var(--color-text-secondary);
+      border-radius: 2px;
+      @include transition-spring(all, 0.3s);
+    }
+    &--open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    &--open span:nth-child(2) { opacity: 0; }
+    &--open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  }
+}

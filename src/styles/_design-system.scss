@@ -1,0 +1,241 @@
+// ============================================================
+// _design-system.scss — Forge SaaS Design System v2
+// ============================================================
+
+:root {
+  // ---- TYPOGRAPHY ----
+  --font-display: 'Plus Jakarta Sans', 'Geist', system-ui, sans-serif;
+  --font-body:    'Plus Jakarta Sans', 'Geist', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+
+  // Fluid type scale
+  --text-xs:   clamp(0.65rem, 0.6rem + 0.25vw,  0.75rem);
+  --text-sm:   clamp(0.75rem, 0.7rem + 0.25vw,  0.875rem);
+  --text-base: clamp(0.875rem,0.8rem + 0.35vw,  1rem);
+  --text-lg:   clamp(1rem,    0.9rem + 0.5vw,   1.125rem);
+  --text-xl:   clamp(1.1rem,  1rem  + 0.5vw,   1.25rem);
+  --text-2xl:  clamp(1.25rem, 1.1rem + 0.75vw,  1.5rem);
+  --text-3xl:  clamp(1.5rem,  1.3rem + 1vw,    2rem);
+  --text-4xl:  clamp(1.875rem,1.5rem + 1.5vw,  2.5rem);
+  --text-5xl:  clamp(2.25rem, 1.75rem + 2.5vw, 3.5rem);
+  --text-6xl:  clamp(2.75rem, 2rem   + 3.5vw,  5rem);
+  --text-7xl:  clamp(3.5rem,  2.5rem + 5vw,    7rem);
+
+  // Letter spacing
+  --tracking-tight:   -0.04em;
+  --tracking-snug:    -0.02em;
+  --tracking-normal:   0em;
+  --tracking-wide:     0.04em;
+  --tracking-wider:    0.08em;
+  --tracking-widest:   0.16em;
+
+  // Line height
+  --leading-none:    1;
+  --leading-tight:   1.15;
+  --leading-snug:    1.35;
+  --leading-normal:  1.6;
+  --leading-relaxed: 1.75;
+
+  // ---- COLOR PALETTE ----
+
+  // Canvas
+  --color-base:      #05070B;
+  --color-surface-1: #0C0F17;
+  --color-surface-2: #111520;
+  --color-surface-3: #161B28;
+  --color-surface-4: #1C2235;
+
+  // Borders
+  --color-border:        rgba(255,255,255,0.04);
+  --color-border-hover:  rgba(255,255,255,0.08);
+  --color-border-strong: rgba(255,255,255,0.10);
+
+  // Text
+  --color-text-primary:   #F8FAFC;
+  --color-text-secondary: #8892A4;
+  --color-text-tertiary:  #4A5568;
+  --color-text-muted:     #2D3748;
+  --color-text-inverse:   #05070B;
+
+  // Per-product accent palette
+  // Whisper AI — Holographic Violet/Cyan
+  --color-whisper-primary:   #A78BFA;
+  --color-whisper-secondary: #22D3EE;
+  --color-whisper-glow:      rgba(167,139,250,0.12);
+  --color-whisper-border:    rgba(167,139,250,0.15);
+
+  // BTC Lens — Crypto Amber/Gold
+  --color-btc-primary:   #F59E0B;
+  --color-btc-secondary: #FBBF24;
+  --color-btc-glow:      rgba(245,158,11,0.10);
+  --color-btc-border:    rgba(245,158,11,0.15);
+
+  // GMB Extractor — Terminal Green
+  --color-gmb-primary:   #10B981;
+  --color-gmb-secondary: #34D399;
+  --color-gmb-glow:      rgba(16,185,129,0.08);
+  --color-gmb-border:    rgba(16,185,129,0.12);
+
+  // TableFlow — Warm Operational Coral
+  --color-table-primary:   #F97316;
+  --color-table-secondary: #FB923C;
+  --color-table-glow:      rgba(249,115,22,0.08);
+  --color-table-border:    rgba(249,115,22,0.12);
+
+  // Legacy accent (keep for nav/generic UI)
+  --color-accent:        #6366F1;
+  --color-accent-hover:  #818CF8;
+  --color-accent-glow:   rgba(99,102,241,0.12);
+  --color-accent-subtle: rgba(99,102,241,0.06);
+  --color-sage:          #10B981;
+  --color-sage-hover:    #34D399;
+  --color-sage-subtle:   rgba(16,185,129,0.08);
+
+  // Semantic
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error:   #EF4444;
+
+  // ---- BORDER RADIUS ----
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-2xl:  32px;
+  --radius-full: 9999px;
+
+  // ---- SPACING (8pt grid) ----
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+}
+
+// ---- BEZIER CURVES ----
+$ease-spring:        cubic-bezier(0.16, 1, 0.3, 1);
+$ease-out-expo:      cubic-bezier(0.19, 1, 0.22, 1);
+$ease-in-out-quart:  cubic-bezier(0.76, 0, 0.24, 1);
+$ease-out-quart:     cubic-bezier(0.25, 1, 0.5, 1);
+$ease-in-circ:       cubic-bezier(0.55, 0, 1, 0.45);
+$ease-spring-soft:   cubic-bezier(0.34, 1.56, 0.64, 1);
+
+// ---- BREAKPOINTS ----
+$bp-sm:  640px;
+$bp-md:  768px;
+$bp-lg:  1024px;
+$bp-xl:  1280px;
+$bp-2xl: 1536px;
+
+// ---- MIXINS ----
+@mixin transition-spring($prop: all, $duration: 0.5s) {
+  transition: $prop $duration $ease-spring;
+}
+
+@mixin transition-expo($prop: all, $duration: 0.6s) {
+  transition: $prop $duration $ease-out-expo;
+}
+
+@mixin transition-quart($prop: all, $duration: 0.4s) {
+  transition: $prop $duration $ease-in-out-quart;
+}
+
+@mixin hover-lift($y: -3px, $shadow: true) {
+  @include transition-spring(transform, 0.4s);
+  &:hover {
+    transform: translateY($y);
+    @if $shadow {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+  }
+}
+
+@mixin ambient-glow($color: rgba(99,102,241,0.2), $spread: 40px) {
+  box-shadow:
+    0 0 0 1px rgba(99,102,241,0.1),
+    0 4px 16px rgba(0,0,0,0.3),
+    0 0 $spread $color;
+}
+
+@mixin ambient-glow-strong {
+  box-shadow:
+    0 0 0 1px rgba(99,102,241,0.25),
+    0 8px 32px rgba(0,0,0,0.4),
+    0 0 64px rgba(99,102,241,0.15),
+    0 0 120px rgba(99,102,241,0.06);
+}
+
+@mixin glass-surface {
+  background: rgba(5,7,11,0.85);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--color-border);
+}
+
+@mixin container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 4vw, 3rem);
+  padding-right: clamp(1.25rem, 4vw, 3rem);
+}
+
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@mixin respond-to($bp) {
+  @if      $bp == sm  { @media (min-width: 640px)  { @content; } }
+  @else if $bp == md  { @media (min-width: 768px)  { @content; } }
+  @else if $bp == lg  { @media (min-width: 1024px) { @content; } }
+  @else if $bp == xl  { @media (min-width: 1280px) { @content; } }
+  @else if $bp == 2xl { @media (min-width: 1536px) { @content; } }
+}
+
+@mixin product-glow($color, $intensity: 0.12) {
+  box-shadow:
+    0 0 0 1px rgba($color, $intensity),
+    0 8px 32px rgba($color, $intensity * 0.8),
+    0 32px 80px rgba($color, $intensity * 0.4);
+}
+
+@mixin noise-overlay {
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.4;
+    z-index: 0;
+    border-radius: inherit;
+  }
+}
+
+@mixin scanlines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+}

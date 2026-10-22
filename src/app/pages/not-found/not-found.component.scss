@@ -1,0 +1,70 @@
+@use '../../../styles/design-system' as *;
+
+.not-found {
+  background: var(--color-base);
+  min-height: calc(100dvh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8);
+
+  &__content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  &__code {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-7xl);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: var(--tracking-tight);
+    background: linear-gradient(135deg, var(--color-accent), var(--color-whisper-primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  &__h1 {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: var(--tracking-snug);
+    margin: 0;
+  }
+
+  &__subtitle {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    line-height: var(--leading-relaxed);
+    max-width: 360px;
+    margin: 0;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 10px 24px;
+    background: var(--color-surface-1);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: var(--space-4);
+    @include transition-spring(border-color color, 0.2s);
+
+    &:hover {
+      border-color: var(--color-border-hover);
+      color: var(--color-text-primary);
+    }
+  }
+}

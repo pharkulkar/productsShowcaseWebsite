@@ -1,0 +1,226 @@
+<main class="product-showcase">
+
+  <!-- HERO -->
+  <section class="product-showcase__hero">
+    <div class="product-showcase__hero-inner">
+      <div class="product-showcase__hero-content">
+        <span class="product-showcase__category-badge">{{product().category}}</span>
+        <h1 class="product-showcase__title">{{product().name}}</h1>
+        <p class="product-showcase__tagline">{{product().tagline}}</p>
+        <p class="product-showcase__description">{{product().description}}</p>
+        <div class="product-showcase__hero-actions">
+          <a href="#" class="btn btn--primary">Start Free Trial</a>
+          <a routerLink="/docs" class="btn btn--ghost">View Documentation</a>
+        </div>
+        <div class="product-showcase__meta-row">
+          <span class="product-showcase__category-badge">{{product().category}}</span>
+          <span class="product-showcase__sep" aria-hidden="true">·</span>
+          <span class="product-showcase__meta-text">v2.0 · Cloud-native · Ships globally</span>
+        </div>
+      </div>
+
+      <!-- Terminal preview -->
+      <div class="product-showcase__hero-visual">
+        <div class="terminal-preview">
+          <div class="terminal-preview__header">
+            <div class="terminal-preview__dots" aria-hidden="true">
+              <span class="terminal-preview__dot terminal-preview__dot--red"></span>
+              <span class="terminal-preview__dot terminal-preview__dot--yellow"></span>
+              <span class="terminal-preview__dot terminal-preview__dot--green"></span>
+            </div>
+            <span class="terminal-preview__tab">zsh — {{product().name}}</span>
+            <span class="terminal-preview__badge" aria-hidden="true">●</span>
+          </div>
+          <div class="terminal-preview__body" role="log" aria-live="polite" aria-label="Interactive terminal demo">
+            @for (line of product().terminalLines; track $index) {
+              <div class="terminal-preview__line"
+                [class.terminal-preview__line--command]="line.startsWith('$')"
+                [class.terminal-preview__line--success]="line.includes('✓')"
+                [class.terminal-preview__line--alert]="line.includes('[ALERT]')"
+                [class.terminal-preview__line--empty]="line === ''">
+                {{line}}
+              </div>
+            }
+            <span class="terminal-preview__cursor" aria-hidden="true">█</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="product-showcase__hero-bg" aria-hidden="true"></div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section class="product-showcase__capabilities">
+    <div class="product-showcase__capabilities-inner">
+      <h2 class="product-showcase__section-title">Platform Capabilities</h2>
+
+      <div class="capability-panel">
+        <nav class="capability-panel__tabs" role="tablist" aria-label="Product capability tabs">
+          <button
+            role="tab"
+            class="capability-panel__tab"
+            [class.capability-panel__tab--active]="activeTab() === 'overview'"
+            [attr.aria-selected]="activeTab() === 'overview'"
+            (click)="setTab('overview')">
+            Overview
+          </button>
+          <button
+            role="tab"
+            class="capability-panel__tab"
+            [class.capability-panel__tab--active]="activeTab() === 'api'"
+            [attr.aria-selected]="activeTab() === 'api'"
+            (click)="setTab('api')">
+            API Reference
+          </button>
+          <button
+            role="tab"
+            class="capability-panel__tab"
+            [class.capability-panel__tab--active]="activeTab() === 'pricing'"
+            [attr.aria-selected]="activeTab() === 'pricing'"
+            (click)="setTab('pricing')">
+            Pricing
+          </button>
+        </nav>
+
+        <div class="capability-panel__content" role="tabpanel">
+          @switch (activeTab()) {
+            @case ('overview') {
+              <div class="capability-panel__overview">
+                <div class="feature-grid">
+                  @for (feature of product().features; track feature.title) {
+                    <div class="feature-card"
+                      [class.feature-card--expanded]="expandedFeature() === feature.title"
+                      (click)="toggleFeature(feature.title)"
+                      tabindex="0"
+                      role="button"
+                      [attr.aria-expanded]="expandedFeature() === feature.title"
+                      [attr.aria-label]="'Toggle ' + feature.title">
+                      <div class="feature-card__header">
+                        <span class="feature-card__icon" aria-hidden="true">{{feature.icon}}</span>
+                        <h3 class="feature-card__title">{{feature.title}}</h3>
+                        <span class="feature-card__toggle" aria-hidden="true">
+                          {{expandedFeature() === feature.title ? '−' : '+'}}
+                        </span>
+                      </div>
+                      @if (expandedFeature() === feature.title) {
+                        <p class="feature-card__desc">{{feature.description}}</p>
+                      }
+                    </div>
+                  }
+                </div>
+              </div>
+            }
+            @case ('api') {
+              <div class="capability-panel__api">
+                <h3 class="capability-panel__api-title">REST API</h3>
+                <p class="capability-panel__api-desc">Programmatic access to all {{product().name}} features. Authenticate with a Bearer token from your account settings.</p>
+                <div class="code-block">
+                  <div class="code-block__header">
+                    <span class="code-block__lang">HTTP</span>
+                  </div>
+                  <pre class="code-block__body"><code>POST https://api.forge.dev/v1/{{product().id}}/events
+Authorization: Bearer &lt;token&gt;
+Content-Type: application/json
+
+{{ '{' }}
+  "source": "my-service",
+  "timestamp": "2024-01-15T10:30:00Z",
+  "payload": {{ '{' }} ... {{ '}' }}
+{{ '}' }}</code></pre>
+                </div>
+              </div>
+            }
+            @case ('pricing') {
+              <div class="capability-panel__pricing">
+                <div class="pricing-grid">
+                  <div class="pricing-tier">
+                    <span class="pricing-tier__name">Starter</span>
+                    <div class="pricing-tier__price">
+                      <span class="pricing-tier__amount">$0</span>
+                      <span class="pricing-tier__period">/month</span>
+                    </div>
+                    <p class="pricing-tier__desc">For individuals and small teams getting started.</p>
+                    <a href="#" class="btn btn--ghost pricing-tier__cta">Get started free</a>
+                  </div>
+                  <div class="pricing-tier pricing-tier--featured">
+                    <span class="pricing-tier__name">Pro</span>
+                    <div class="pricing-tier__price">
+                      <span class="pricing-tier__amount">$149</span>
+                      <span class="pricing-tier__period">/month</span>
+                    </div>
+                    <p class="pricing-tier__desc">For growing engineering teams with production workloads.</p>
+                    <a href="#" class="btn btn--primary pricing-tier__cta">Start Pro trial</a>
+                  </div>
+                  <div class="pricing-tier">
+                    <span class="pricing-tier__name">Enterprise</span>
+                    <div class="pricing-tier__price">
+                      <span class="pricing-tier__amount">Custom</span>
+                    </div>
+                    <p class="pricing-tier__desc">Custom contracts, SLAs, and dedicated infrastructure.</p>
+                    <a href="#" class="btn btn--ghost pricing-tier__cta">Contact sales</a>
+                  </div>
+                </div>
+              </div>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITY MATRIX -->
+  <section class="product-showcase__matrix">
+    <div class="product-showcase__matrix-inner">
+      <h2 class="product-showcase__section-title">Feature Comparison</h2>
+      <p class="product-showcase__section-desc">See exactly what's included at every plan level.</p>
+      <div class="matrix-wrapper" role="region" aria-label="Feature comparison table">
+        <table class="capability-matrix capability-matrix--minimal" role="table">
+          <caption class="capability-matrix__caption">{{product().name}} feature comparison across Starter, Pro, and Enterprise plans</caption>
+          <thead>
+            <tr>
+              <th scope="col" class="capability-matrix__th capability-matrix__th--feature">Capability</th>
+              <th scope="col" class="capability-matrix__th">Starter</th>
+              <th scope="col" class="capability-matrix__th">Pro</th>
+              <th scope="col" class="capability-matrix__th capability-matrix__th--enterprise">Enterprise</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of product().capabilities; track row.capability) {
+              <tr class="capability-matrix__row">
+                <td class="capability-matrix__td capability-matrix__td--feature">{{row.capability}}</td>
+                <td class="capability-matrix__td">
+                  @if (isBool(row.starter)) {
+                    <span [class]="row.starter ? 'check' : 'cross'" [attr.aria-label]="row.starter ? 'Included' : 'Not included'">
+                      {{row.starter ? '✓' : '✕'}}
+                    </span>
+                  } @else {
+                    <span class="capability-matrix__value">{{row.starter}}</span>
+                  }
+                </td>
+                <td class="capability-matrix__td">
+                  @if (isBool(row.pro)) {
+                    <span [class]="row.pro ? 'check' : 'cross'" [attr.aria-label]="row.pro ? 'Included' : 'Not included'">
+                      {{row.pro ? '✓' : '✕'}}
+                    </span>
+                  } @else {
+                    <span class="capability-matrix__value">{{row.pro}}</span>
+                  }
+                </td>
+                <td class="capability-matrix__td">
+                  @if (isBool(row.enterprise)) {
+                    <span [class]="row.enterprise ? 'check' : 'cross'" [attr.aria-label]="row.enterprise ? 'Included' : 'Not included'">
+                      {{row.enterprise ? '✓' : '✕'}}
+                    </span>
+                  } @else {
+                    <span class="capability-matrix__value">{{row.enterprise}}</span>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>

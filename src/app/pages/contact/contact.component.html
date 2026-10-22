@@ -1,0 +1,140 @@
+<div class="contact">
+  <div class="contact__inner">
+
+    <!-- Hero -->
+    <section class="contact__hero">
+      <span class="contact__eyebrow">Contact</span>
+      <h1 class="contact__h1">Let's talk</h1>
+      <p class="contact__subtitle">
+        Questions, feedback, partnership ideas — reach out through any of the channels below
+        or fill in the form and we'll get back to you within one business day.
+      </p>
+    </section>
+
+    <!-- Contact cards -->
+    <section class="contact__channels">
+      <div class="contact__card">
+        <span class="contact__card-icon">✉</span>
+        <p class="contact__card-label">General &amp; Support</p>
+        <a href="mailto:hello@myproducts.dev" class="contact__card-value">hello&#64;myproducts.dev</a>
+      </div>
+      <div class="contact__card">
+        <span class="contact__card-icon">𝕏</span>
+        <p class="contact__card-label">Quick questions</p>
+        <a href="https://twitter.com/myproducts" class="contact__card-value" target="_blank" rel="noopener">&#64;myproducts</a>
+      </div>
+      <div class="contact__card">
+        <span class="contact__card-icon">⬡</span>
+        <p class="contact__card-label">Business inquiries</p>
+        <a href="https://linkedin.com/in/myproducts" class="contact__card-value" target="_blank" rel="noopener">linkedin.com/in/myproducts</a>
+      </div>
+    </section>
+
+    <!-- Form or success -->
+    @if (submitted()) {
+      <div class="contact__success">
+        <div class="contact__success-icon">✓</div>
+        <h2 class="contact__success-title">Message sent</h2>
+        <p class="contact__success-text">
+          Thanks for reaching out. We'll get back to you at {{ email() }} within one business day.
+        </p>
+        <p class="contact__success-fallback">
+          Need something urgent? Email directly at
+          <a href="mailto:hello@myproducts.dev" class="contact__success-link">hello&#64;myproducts.dev</a>
+        </p>
+      </div>
+    } @else {
+      <section class="contact__form-section">
+        <h2 class="contact__form-heading">Send a message</h2>
+
+        <div class="contact__form">
+          <!-- Name -->
+          <div class="contact__field">
+            <label class="contact__label" for="contact-name">Name</label>
+            <input
+              id="contact-name"
+              type="text"
+              class="contact__input"
+              [class.contact__input--error]="nameError()"
+              [value]="name()"
+              (input)="name.set($any($event.target).value)"
+              (blur)="nameTouched.set(true)"
+              placeholder="Your name"
+              autocomplete="name"
+            />
+            @if (nameError()) {
+              <p class="contact__error">{{ nameError() }}</p>
+            }
+          </div>
+
+          <!-- Email -->
+          <div class="contact__field">
+            <label class="contact__label" for="contact-email">Email</label>
+            <input
+              id="contact-email"
+              type="email"
+              class="contact__input"
+              [class.contact__input--error]="emailError()"
+              [value]="email()"
+              (input)="email.set($any($event.target).value)"
+              (blur)="emailTouched.set(true)"
+              placeholder="you@example.com"
+              autocomplete="email"
+            />
+            @if (emailError()) {
+              <p class="contact__error">{{ emailError() }}</p>
+            }
+          </div>
+
+          <!-- Subject -->
+          <div class="contact__field">
+            <label class="contact__label" for="contact-subject">Subject</label>
+            <select
+              id="contact-subject"
+              class="contact__select"
+              [class.contact__input--error]="subjectError()"
+              (change)="subject.set($any($event.target).value)"
+              (blur)="subjectTouched.set(true)"
+            >
+              <option value="">Select a subject…</option>
+              <option value="general">General question</option>
+              <option value="support">Product support</option>
+              <option value="partnership">Partnership / collaboration</option>
+              <option value="feature">Feature request</option>
+              <option value="other">Other</option>
+            </select>
+            @if (subjectError()) {
+              <p class="contact__error">{{ subjectError() }}</p>
+            }
+          </div>
+
+          <!-- Message -->
+          <div class="contact__field">
+            <label class="contact__label" for="contact-message">Message</label>
+            <textarea
+              id="contact-message"
+              class="contact__textarea"
+              [class.contact__input--error]="messageError()"
+              [value]="message()"
+              (input)="message.set($any($event.target).value)"
+              (blur)="messageTouched.set(true)"
+              placeholder="Tell me what's on your mind…"
+              rows="5"
+            ></textarea>
+            @if (messageError()) {
+              <p class="contact__error">{{ messageError() }}</p>
+            }
+          </div>
+
+          <!-- Submit -->
+          <div class="contact__submit-row">
+            <button class="contact__submit" type="button" (click)="handleSubmit()">
+              Send message
+            </button>
+          </div>
+        </div>
+      </section>
+    }
+
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<main class="get-started">
+
+  <!-- PAGE HEADER -->
+  <section class="get-started__header">
+    <div class="get-started__header-inner">
+      <div class="get-started__eyebrow">
+        <span class="get-started__pulse" aria-hidden="true"></span>
+        <span>Setup guides</span>
+      </div>
+      <h1 class="get-started__title">Get started in minutes</h1>
+      <p class="get-started__subtitle">
+        Each product is designed to be up and running before your next meeting, search, or service.
+        Pick the one you need below.
+      </p>
+    </div>
+  </section>
+
+  <!-- PRODUCT SETUP CARDS -->
+  <section class="get-started__products">
+    <div class="get-started__products-inner">
+
+      @for (product of products; track product.id) {
+        <article class="setup-card" [attr.data-product]="product.id" [id]="product.id">
+
+          <!-- Card header -->
+          <div class="setup-card__header">
+            <div class="setup-card__header-left">
+              <span class="setup-card__category" [attr.data-accent]="product.accentVar">
+                <span aria-hidden="true">{{product.platformIcon}}</span>
+                {{product.category}}
+              </span>
+              <h2 class="setup-card__name">{{product.name}}</h2>
+              <p class="setup-card__tagline">{{product.tagline}}</p>
+            </div>
+            <div class="setup-card__platform-badge" [attr.aria-label]="'Available on ' + product.platform">
+              <span class="setup-card__platform-icon" aria-hidden="true">{{product.platformIcon}}</span>
+              <span class="setup-card__platform-label">{{product.platform}}</span>
+            </div>
+          </div>
+
+          <!-- Steps -->
+          <div class="setup-card__steps" role="list" [attr.aria-label]="'Setup steps for ' + product.name">
+            @for (step of product.steps; track $index) {
+              <div class="setup-step" role="listitem">
+                <div class="setup-step__number" aria-hidden="true">{{$index + 1}}</div>
+                <div class="setup-step__content">
+                  <h3 class="setup-step__label">{{step.label}}</h3>
+                  <p class="setup-step__detail">{{step.detail}}</p>
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- CTAs -->
+          <div class="setup-card__actions">
+            <a [href]="product.primaryCta.href" class="btn btn--primary setup-card__primary-cta" [attr.data-accent]="product.accentVar">
+              {{product.primaryCta.label}}
+            </a>
+            @if (product.secondaryCta) {
+              <a [href]="product.secondaryCta!.href" class="btn btn--ghost">
+                {{product.secondaryCta!.label}}
+              </a>
+            }
+            <a [routerLink]="['/products', product.id]" class="setup-card__detail-link">
+              See full product details →
+            </a>
+          </div>
+
+          <!-- System requirements -->
+          <div class="setup-card__reqs">
+            <span class="setup-card__reqs-label">System requirements</span>
+            <ul class="setup-card__reqs-list" role="list">
+              @for (req of product.systemReqs; track $index) {
+                <li class="setup-card__req">{{req}}</li>
+              }
+            </ul>
+          </div>
+
+        </article>
+      }
+
+    </div>
+  </section>
+
+</main>

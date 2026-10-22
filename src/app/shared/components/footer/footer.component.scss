@@ -1,0 +1,134 @@
+@use '../../../../styles/design-system' as *;
+
+.footer {
+  background: var(--color-surface-1);
+  border-top: 1px solid var(--color-border);
+  padding-top: 64px;
+  padding-bottom: 32px;
+
+  &__inner {
+    @include container;
+  }
+
+  // ---- TOP GRID ----
+  &__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
+
+    @media (max-width: #{$bp-md}) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: #{$bp-sm}) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // ---- BRAND COLUMN ----
+  &__col--brand {
+    padding-right: var(--space-8);
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    text-decoration: none;
+    margin-bottom: var(--space-4);
+  }
+
+  &__logo-mark {
+    font-size: 1.25rem;
+    color: var(--color-accent);
+    line-height: 1;
+  }
+
+  &__logo-name {
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: var(--tracking-snug);
+  }
+
+  &__tagline {
+    font-size: var(--text-sm);
+    color: var(--color-text-tertiary);
+    line-height: var(--leading-relaxed);
+    max-width: 220px;
+  }
+
+  // ---- GENERIC COLUMN ----
+  &__col-heading {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-widest);
+    color: var(--color-text-tertiary);
+    text-transform: uppercase;
+    margin-bottom: var(--space-4);
+  }
+
+  &__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  &__link {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    @include transition-spring(color, 0.2s);
+
+    &:hover {
+      color: var(--color-text-primary);
+    }
+  }
+
+  // ---- BOTTOM BAR ----
+  &__bottom {
+    border-top: 1px solid var(--color-border);
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  &__copyright {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-text-tertiary);
+  }
+
+  &__socials {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  &__social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-tertiary);
+    text-decoration: none;
+    @include transition-spring(border-color color, 0.2s);
+
+    &:hover {
+      border-color: var(--color-border-strong);
+      color: var(--color-text-primary);
+    }
+  }
+}
